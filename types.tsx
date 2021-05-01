@@ -3,7 +3,7 @@ export type RootStackParamList = {
   Login: undefined;
   Root: undefined;
   NotFound: undefined;
-  Blog: undefined;
+  Profile: undefined;
 };
 
 export type BottomTabParamList = {
@@ -11,8 +11,18 @@ export type BottomTabParamList = {
   TabCB: undefined;
   TabBlog: undefined;
   TabTrivias: undefined;
-  TabCampañas: undefined;
+  TabCampanas: undefined;
 };
+export type ProfileParamList = {
+  Profile: undefined;
+  HistorialPuntos: undefined;
+  HistorialCampanas: undefined;
+  HistorialNotificaciones: undefined;
+  TabCampanas: undefined;
+};
+
+
+
 
 export type TabOneParamList = {
   TabTriviasScreen: undefined;
@@ -28,6 +38,14 @@ export type TabBlogParamList = {
   TabBlogScreen: undefined;
   DetailBlogScreen: undefined;
 };
+export type TabCampanasParamList = {
+  TabCampanasScreen: undefined;
+  TriviasScreen: undefined;
+  TriviaMultipleScreen: undefined;
+};
+
+
+
 export type LoginParamList = {
   LoginScreen: undefined;
   ResetPasswordScreen: undefined;

@@ -7,7 +7,7 @@ import { Text, View } from "../../components/Themed";
 export default function TabCBScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
+      <Text style={styles.title}>Tab Twoddd</Text>
       <View
         style={styles.separator}
         lightColor="#eee"

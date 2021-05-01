@@ -16,6 +16,7 @@ import LoginStackNavigator from "./LoginStackNavigator";
 import NotFoundScreen from "../src/screens/NotFoundScreen";
 import { RootStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTabNavigator";
+import ProfileStackNavigator from "./ProfileStackNavigator";
 
 export default function Navigation({
   colorScheme,
@@ -44,6 +45,7 @@ function RootNavigator() {
         options={{ title: "login" }}
       />
       <Stack.Screen name="Root" component={BottomTabNavigator} />
+      <Stack.Screen name="Profile" component={ProfileStackNavigator} />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}

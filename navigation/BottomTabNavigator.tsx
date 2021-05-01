@@ -13,8 +13,12 @@ import {
   TabCBParamList,
   TabBGParamList,
   TabBlogParamList,
+  TabCampanasParamList
 } from "../types";
 import DetailBlog from "../src/screens/blog/DetailBlog";
+import TabCampanasScreen from "../src/screens/campanas/TabCampanasScreen";
+import TriviasScreen from "../src/screens/campanas/TriviasScreen";
+import TriviaMultipleScreen from "../src/screens/campanas/TriviaMultipleScreen";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -44,6 +48,15 @@ export default function BottomTabNavigator() {
       <BottomTab.Screen
         name="TabBlog"
         component={TabBlogNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="TabCampanas"
+        component={TabCampanasNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-code" color={color} />
@@ -110,6 +123,31 @@ function TabBlogNavigator() {
     </TabBlogStack.Navigator>
   );
 }
+
+const TabCampanasStack = createStackNavigator<TabCampanasParamList>();
+function TabCampanasNavigator() {
+  return (
+    <TabCampanasStack.Navigator>
+      <TabCampanasStack.Screen
+        name="TabCampanasScreen"
+        component={TabCampanasScreen}
+        options={{ headerTitle: "TabCampanasScreen", headerLeft: null }}
+      />
+      <TabCampanasStack.Screen
+        name="TriviasScreen"
+        component={TriviasScreen  }
+        options={{ headerTitle: "Trivias" }}
+      />
+      <TabCampanasStack.Screen
+        name="TriviaMultipleScreen"
+        component={TriviaMultipleScreen }
+        options={{ headerTitle: "Trivia multiple" }}
+      />
+    </TabCampanasStack.Navigator>
+  );
+}
+
+
 
 const TabBGStack = createStackNavigator<TabBGParamList>();
 function TabBGNavigator() {

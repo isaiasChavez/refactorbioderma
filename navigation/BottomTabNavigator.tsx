@@ -1,18 +1,20 @@
-/**
- * Learn more about createBottomTabNavigator:
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
+import { Ionicons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import * as React from "react";
+import useColorScheme from "../hooks/useColorScheme";
+import TabOneScreen from "../src/screens/TabOneScreen";
+import TabCBScreen from "../src/screens/TabCBScreen";
+import TabBlogScreen from "../src/screens/blog/TabBlogScreen";
 
-import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
-
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import {
+  BottomTabParamList,
+  TabOneParamList,
+  TabCBParamList,
+  TabBGParamList,
+  TabBlogParamList,
+} from "../types";
+import DetailBlog from "../src/screens/blog/DetailBlog";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -20,21 +22,32 @@ export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
-    <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+    <BottomTab.Navigator initialRouteName="TabBlog">
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="TabTrivias"
+        component={TabTriviasNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="TabCB"
+        component={TabCBNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="TabBlog"
+        component={TabBlogNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
         }}
       />
     </BottomTab.Navigator>
@@ -43,36 +56,70 @@ export default function BottomTabNavigator() {
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
-function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
+function TabBarIcon(props: {
+  name: React.ComponentProps<typeof Ionicons>["name"];
+  color: string;
+}) {
   return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const TabTriviasStack = createStackNavigator<TabOneParamList>();
 
-function TabOneNavigator() {
+function TabTriviasNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
+    <TabTriviasStack.Navigator>
+      <TabTriviasStack.Screen
+        name="TabTriviasScreen"
         component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: "Trivias", headerLeft: null }}
       />
-    </TabOneStack.Navigator>
+    </TabTriviasStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const TabCBStack = createStackNavigator<TabCBParamList>();
 
-function TabTwoNavigator() {
+function TabCBNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <TabCBStack.Navigator>
+      <TabCBStack.Screen
+        name="TabCBScreen"
+        component={TabCBScreen}
+        options={{ headerTitle: "Club bioderma", headerLeft: null }}
       />
-    </TabTwoStack.Navigator>
+    </TabCBStack.Navigator>
+  );
+}
+
+const TabBlogStack = createStackNavigator<TabBlogParamList>();
+function TabBlogNavigator() {
+  return (
+    <TabBlogStack.Navigator>
+      <TabBlogStack.Screen
+        name="TabBlogScreen"
+        component={TabBlogScreen}
+        options={{ headerTitle: "Blog", headerLeft: null }}
+      />
+      <TabBlogStack.Screen
+        name="DetailBlogScreen"
+        component={DetailBlog}
+        options={{ headerTitle: "Detalle de blog" }}
+      />
+    </TabBlogStack.Navigator>
+  );
+}
+
+const TabBGStack = createStackNavigator<TabBGParamList>();
+function TabBGNavigator() {
+  return (
+    <TabBGStack.Navigator>
+      <TabBGStack.Screen
+        name="TabBGScreen"
+        component={TabCBScreen}
+        options={{ headerTitle: "Tab Two Title" }}
+      />
+    </TabBGStack.Navigator>
   );
 }
